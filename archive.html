@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archive — The Examined Eye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #F8F5EF;
+      color: #1a1a18;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-bottom: 1.5px solid #1a1a18;
+      padding: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    nav a { color: #555; }
+    nav a:hover { color: #1a1a18; }
+    nav a.active { color: #1a1a18; border-bottom: 1px solid #1a1a18; padding-bottom: 1px; }
+
+    .pub-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: #1a1a18;
+      display: block;
+    }
+
+    /* ── Archive header ── */
+    .archive-header {
+      padding: 3rem 0 0;
+      border-bottom: 0.5px solid #ccc;
+    }
+
+    .archive-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: #1a1a18;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 0;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.6rem 0;
+      margin-right: 2.5rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tab-btn.active {
+      color: #1a1a18;
+      border-bottom-color: #1a1a18;
+    }
+
+    .tab-btn:hover { color: #1a1a18; }
+
+    /* ── Tab panels ── */
+    .tab-panel { display: none; padding: 3rem 0 5rem; }
+    .tab-panel.active { display: block; }
+
+    /* ── Essays list ── */
+    .essays-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .essay-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 120px;
+      gap: 2rem;
+      align-items: baseline;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid #ccc;
+    }
+
+    .essay-row:first-child { border-top: 0.5px solid #ccc; }
+
+    .essay-row:hover .essay-row-title { opacity: 0.55; }
+
+    .essay-row-date {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      white-space: nowrap;
+    }
+
+    .essay-row-body {}
+
+    .essay-row-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #1a1a18;
+      margin-bottom: 0.3rem;
+      transition: opacity 0.15s;
+    }
+
+    .essay-row-title em { font-style: italic; }
+
+    .essay-row-excerpt {
+      font-size: 0.9rem;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .essay-row-cat {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #bbb;
+      text-align: right;
+    }
+
+    /* ── Notes grid ── */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .note-card {
+      position: relative;
+      background: #e8e3da;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .note-card:hover .note-overlay { opacity: 1; }
+
+    .note-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* placeholder when no image */
+    .note-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #e0dbd2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    .note-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 26, 24, 0.82);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .note-overlay-cat {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 0.4rem;
+    }
+
+    .note-overlay-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #f0ece4;
+    }
+
+    .note-overlay-date {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-top: 0.6rem;
+    }
+
+    /* expanded note (click) */
+    .note-expanded {
+      display: none;
+      grid-column: span 3;
+      background: #F0ECE4;
+      padding: 2rem 2.5rem;
+      border-top: 0.5px solid #ccc;
+      border-bottom: 0.5px solid #ccc;
+    }
+
+    .note-expanded.open { display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; align-items: start; }
+
+    .note-expanded img,
+    .note-expanded .note-exp-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #e0dbd2;
+    }
+
+    .note-expanded .note-exp-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .note-exp-cat {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.75rem;
+    }
+
+    .note-exp-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #2a2a28;
+    }
+
+    .note-exp-date {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      margin-top: 1rem;
+    }
+
+    .note-exp-close {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+      cursor: pointer;
+      margin-top: 1.25rem;
+      display: inline-block;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .note-exp-close:hover { color: #1a1a18; }
+
+    /* ── Instagram link ── */
+    .insta-link {
+      margin-top: 2rem;
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 0.5px solid #ccc;
+    }
+
+    .insta-link a {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #1a1a18;
+      border-bottom: 1px solid #1a1a18;
+      padding-bottom: 1px;
+    }
+
+    .insta-link a:hover { opacity: 0.5; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1.5px solid #1a1a18;
+      padding: 1.5rem 0 2rem;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #1a1a18;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 680px) {
+      .essay-row { grid-template-columns: 1fr; gap: 0.25rem; }
+      .essay-row-date { order: 3; }
+      .essay-row-cat { text-align: left; order: 4; }
+      .notes-grid { grid-template-columns: repeat(2, 1fr); }
+      .note-expanded.open { grid-column: span 2; grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="inner">
+      <nav>
+        <a href="index.html">Essays</a>
+        <a href="archive.html" class="active">Archive</a>
+        <a href="about.html">About</a>
+      </nav>
+      <a href="index.html" class="pub-title">The Examined Eye</a>
+    </div>
+  </header>
+
+  <main class="inner">
+
+    <div class="archive-header">
+      <h1>Archive</h1>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="essays">Essays</button>
+        <button class="tab-btn" data-tab="notes">Field Notes</button>
+      </div>
+    </div>
+
+    <!-- ── ESSAYS TAB ── -->
+    <div class="tab-panel active" id="tab-essays">
+      <div class="essays-list">
+
+        <a href="essays/tillmans.html" class="essay-row">
+          <span class="essay-row-date">2026</span>
+          <div class="essay-row-body">
+            <div class="essay-row-title">Nothing Fixed, Everything in Motion: Wolfgang Tillmans between MoMA and the Pompidou</div>
+            <div class="essay-row-excerpt">Two cities, two temperatures, one artist — and what the difference between them reveals about the ethics of looking.</div>
+          </div>
+          <span class="essay-row-cat">Exhibition Review</span>
+        </a>
+
+        <a href="essays/gonzalez-torres.html" class="essay-row">
+          <span class="essay-row-date">2025</span>
+          <div class="essay-row-body">
+            <div class="essay-row-title">To Pile or Not to Pile: Reconfiguring the Art of <em>Felix González-Torres</em></div>
+            <div class="essay-row-excerpt">On candy piles, flexible instructions, and whether a different configuration of grief can still be grief.</div>
+          </div>
+          <span class="essay-row-cat">Essay</span>
+        </a>
+
+        <!-- Add new essays above this comment, following the same pattern -->
+
+      </div>
+    </div>
+
+    <!-- ── NOTES TAB ── -->
+    <div class="tab-panel" id="tab-notes">
+      <div class="notes-grid" id="notes-grid">
+
+        <!-- NOTE 1 -->
+        <div class="note-card" data-index="0">
+          <!-- Replace note-img-placeholder with: <img class="note-img" src="images/note-01.jpg" alt="" /> -->
+          <div class="note-img-placeholder">Image</div>
+          <div class="note-overlay">
+            <div class="note-overlay-cat">Gallery visit</div>
+            <div class="note-overlay-text">Add your Instagram caption here. Replace this placeholder with your own text and image.</div>
+            <div class="note-overlay-date">Month 2025</div>
+          </div>
+        </div>
+
+        <!-- NOTE 2 -->
+        <div class="note-card" data-index="1">
+          <div class="note-img-placeholder">Image</div>
+          <div class="note-overlay">
+            <div class="note-overlay-cat">Exhibition</div>
+            <div class="note-overlay-text">Add your Instagram caption here. Replace this placeholder with your own text and image.</div>
+            <div class="note-overlay-date">Month 2025</div>
+          </div>
+        </div>
+
+        <!-- NOTE 3 -->
+        <div class="note-card" data-index="2">
+          <div class="note-img-placeholder">Image</div>
+          <div class="note-overlay">
+            <div class="note-overlay-cat">Art fair</div>
+            <div class="note-overlay-text">Add your Instagram caption here. Replace this placeholder with your own text and image.</div>
+            <div class="note-overlay-date">Month 2025</div>
+          </div>
+        </div>
+
+        <!-- Expanded panel — do not remove, controlled by JS -->
+        <div class="note-expanded" id="note-expanded-row-0">
+          <div class="note-exp-placeholder">Image</div>
+          <div class="note-exp-body">
+            <div class="note-exp-cat"></div>
+            <div class="note-exp-text"></div>
+            <div class="note-exp-date"></div>
+            <span class="note-exp-close" onclick="closeNote()">Close</span>
+          </div>
+        </div>
+
+        <!-- NOTE 4 -->
+        <div class="note-card" data-index="3">
+          <div class="note-img-placeholder">Image</div>
+          <div class="note-overlay">
+            <div class="note-overlay-cat">Works on paper</div>
+            <div class="note-overlay-text">Add your Instagram caption here. Replace this placeholder with your own text and image.</div>
+            <div class="note-overlay-date">Month 2025</div>
+          </div>
+        </div>
+
+        <!-- NOTE 5 -->
+        <div class="note-card" data-index="4">
+          <div class="note-img-placeholder">Image</div>
+          <div class="note-overlay">
+            <div class="note-overlay-cat">Photography</div>
+            <div class="note-overlay-text">Add your Instagram caption here. Replace this placeholder with your own text and image.</div>
+            <div class="note-overlay-date">Month 2025</div>
+          </div>
+        </div>
+
+        <!-- NOTE 6 -->
+        <div class="note-card" data-index="5">
+          <div class="note-img-placeholder">Image</div>
+          <div class="note-overlay">
+            <div class="note-overlay-cat">Sculpture</div>
+            <div class="note-overlay-text">Add your Instagram caption here. Replace this placeholder with your own text and image.</div>
+            <div class="note-overlay-date">Month 2025</div>
+          </div>
+        </div>
+
+        <!-- Expanded panel row 2 -->
+        <div class="note-expanded" id="note-expanded-row-1">
+          <div class="note-exp-placeholder">Image</div>
+          <div class="note-exp-body">
+            <div class="note-exp-cat"></div>
+            <div class="note-exp-text"></div>
+            <div class="note-exp-date"></div>
+            <span class="note-exp-close" onclick="closeNote()">Close</span>
+          </div>
+        </div>
+
+        <!-- Add more notes here in groups of 3, with an expanded panel after each row -->
+        <!-- Pattern: 3× .note-card, then 1× .note-expanded -->
+
+      </div>
+
+      <div class="insta-link">
+        <a href="https://instagram.com/behindartscenes" target="_blank">More on Instagram &rarr;</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <p class="footer-title">The Examined Eye</p>
+      <p class="footer-copy">All essays © Vasiliki Hadzikosta &nbsp;·&nbsp; Built for the love of looking</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Tab switching ──
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        closeNote();
+      });
+    });
+
+    // ── Note expand on click ──
+    let activeIndex = -1;
+
+    document.querySelectorAll('.note-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.dataset.index);
+        const row = Math.floor(idx / 3);
+        const expandedId = 'note-expanded-row-' + row;
+        const expanded = document.getElementById(expandedId);
+
+        // Read content from the card
+        const overlay = card.querySelector('.note-overlay');
+        const cat = overlay.querySelector('.note-overlay-cat').textContent;
+        const text = overlay.querySelector('.note-overlay-text').textContent;
+        const date = overlay.querySelector('.note-overlay-date').textContent;
+
+        // Check if same card — toggle off
+        if (activeIndex === idx) {
+          closeNote();
+          return;
+        }
+
+        // Close any open panel first
+        closeNote();
+
+        // Populate expanded panel
+        expanded.querySelector('.note-exp-cat').textContent = cat;
+        expanded.querySelector('.note-exp-text').textContent = text;
+        expanded.querySelector('.note-exp-date').textContent = date;
+
+        // Copy image if present
+        const imgEl = card.querySelector('.note-img');
+        const expImgSlot = expanded.querySelector('img, .note-exp-placeholder');
+        if (imgEl && expImgSlot) {
+          const newImg = document.createElement('img');
+          newImg.src = imgEl.src;
+          newImg.style.cssText = 'width:100%;aspect-ratio:1;object-fit:cover;display:block;';
+          expImgSlot.replaceWith(newImg);
+        }
+
+        expanded.classList.add('open');
+        activeIndex = idx;
+
+        // Scroll into view smoothly
+        setTimeout(() => expanded.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      });
+    });
+
+    function closeNote() {
+      document.querySelectorAll('.note-expanded').forEach(el => el.classList.remove('open'));
+      activeIndex = -1;
+    }
+  </script>
+
+</body>
+</html>
