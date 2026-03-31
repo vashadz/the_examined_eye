@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nothing Fixed, Everything in Motion — The Examined Eye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #F8F5EF;
+      color: #1a1a18;
+      line-height: 1.8;
+    }
+
+    a { color: inherit; }
+
+    .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-bottom: 1.5px solid #1a1a18;
+      padding: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    nav a { text-decoration: none; color: #555; }
+    nav a:hover { color: #1a1a18; }
+
+    .pub-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: #1a1a18;
+    }
+
+    /* ── Essay header ── */
+    .essay-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2.5rem;
+      text-align: center;
+      border-bottom: 0.5px solid #ccc;
+    }
+
+    .essay-kicker {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1.25rem;
+    }
+
+    .essay-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: #1a1a18;
+      margin-bottom: 1rem;
+    }
+
+    .essay-subtitle {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #555;
+      margin-bottom: 1.75rem;
+      line-height: 1.4;
+    }
+
+    .essay-byline {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #888;
+    }
+
+    .essay-byline strong {
+      color: #1a1a18;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Essay body ── */
+    .essay-body {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .essay-body p {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: #222;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:first-child::first-letter {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 4.2rem;
+      font-weight: 600;
+      float: left;
+      line-height: 0.78;
+      margin-right: 0.08em;
+      margin-top: 0.12em;
+      color: #1a1a18;
+    }
+
+    .essay-body em { font-style: italic; }
+    .essay-body strong { font-weight: 500; }
+
+    .essay-body blockquote {
+      margin: 2.5rem 0;
+      padding: 0 0 0 1.75rem;
+      border-left: 1.5px solid #1a1a18;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: #444;
+    }
+
+    .essay-body .poem {
+      margin: 2rem 0 2rem 2.5rem;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #444;
+    }
+
+    /* ── Footer ── */
+    .essay-footer {
+      border-top: 0.5px solid #ccc;
+      max-width: 660px;
+      margin: 0 auto 4rem;
+      padding: 1.5rem 2rem 0;
+    }
+
+    .back-link {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: #1a1a18; }
+
+    footer {
+      border-top: 1.5px solid #1a1a18;
+      padding: 1.5rem 0 2rem;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #1a1a18;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .essay-body p:first-child::first-letter { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="inner">
+      <nav>
+        <a href="../index.html">Essays</a>
+        <a href="#">Archive</a>
+        <a href="#">About</a>
+      </nav>
+      <a href="../index.html" style="text-decoration:none;">
+        <h1 class="pub-title">The Examined Eye</h1>
+      </a>
+    </div>
+  </header>
+
+  <div class="essay-header">
+    <p class="essay-kicker">Exhibition Review &nbsp;·&nbsp; Photography</p>
+    <h1 class="essay-title">Nothing Fixed, Everything in Motion</h1>
+    <p class="essay-subtitle">Wolfgang Tillmans between MoMA and the Pompidou</p>
+    <p class="essay-byline">By <strong>Vasiliki Hadzikosta</strong></p>
+  </div>
+
+  <article class="essay-body">
+
+    <p>Two years ago I walked into MoMA and met Wolfgang Tillmans in a clear voice. The retrospective <em>To Look Without Fear</em>, organized by Roxana Marcoci with Caitlin Ryan and Phil Taylor, moved with a steady clarity. I remember the photocopy that read:</p>
+
+    <div class="poem">
+      Wer<br>
+      Liebe<br>
+      wagt<br>
+      lebt<br>
+      morgen
+    </div>
+
+    <p><em>Who dares to love lives tomorrow.</em> It glowed with a strange optimism, almost a counterpoint to the tenderness and fatigue that travel through his pictures, the beauty he finds in people who are struggling, the everyday that is always a little bruised. I remember the screening rooms and the shock of realizing he also makes music. I stood in front of <em>Insanely Alive</em>, loved it immediately, and opened Shazam on instinct. New York felt intimate. The portraits were friends and lovers. Even the airplanes and the rats and the cut corn felt like details from a personal map.</p>
+
+    <p>At the Centre Pompidou this fall the temperature changed. <em>Rien ne nous y préparait — Tout nous y préparait</em>. Nothing prepared us for it, everything prepared us for it. The title reads like a riddle and a promise. This was Tillmans with a carte blanche, not a tidy sequence but a constellation that required me to plot the route myself. The architecture did not guide me so much as dare me to choose: industrial, tall, a layout that refused a single path. I had to choose my own lefts and rights and build my own syntax. It felt like Berlin in spirit, a freedom that arrives from the absence of walls. He placed French translations of his words on the works themselves, which felt like a small act of hospitality and also a way to ground the work in the city that was hosting it. Here the show was curated <em>pour les gens</em>.</p>
+
+    <p>If MoMA let me meet Tillmans, the Pompidou asked me to walk beside him while he thinks. Tables appeared like workstations for the public mind. Books on philosophy, history, art, and books about him, all there to be handled. He was giving people the material they needed to make a fair critique. It felt like a simple trust in the viewer. He was also giving away the work in another sense. A small room offered supplies, newspapers, his images laminated, stamps with the exhibition title, brown folders to carry the whole thing home. Two creations per person, the guard said with a smile. I watched someone combine two or three newspapers, improvising a path between headlines, and it sparked something in me. I left with my own folder, my own arrangement. Irregular landscapes, irregular thought, ephemeral and everything that follows. The surroundings were instruments, not props.</p>
+
+    <p>The isolated room for <em>Freischwimmer</em> was here, and it felt right. The title refers to a German swimming certificate earned by schoolchildren, which is such a plain way to name a series that moves like alchemy. Light and chemistry, color unfastened from subject, a body that swims free. In the quiet of that room I could hear the hum of the building. I stayed long enough for the images to stop behaving like images and start behaving like weather.</p>
+
+    <p>It is easy to mistake all this for autobiography. The lovers, the friends, the everyday table. But that is not what is happening. Tillmans uses his life as a means so that people can find themselves inside the work and make their own truth. The intimacy is real and also open ended. What I recognize in a photograph may not be what you recognize, and that is the point. MoMA felt like an invitation into his circle. The Pompidou felt like a challenge to complete the work with my own steps.</p>
+
+    <blockquote>I cannot control everything in my life and the installations are a reflection of this underlying sentiment that has been with me from an early age, this dichotomy between wanting to control everything and the humble acceptance of what actually is.</blockquote>
+
+    <p>The photographs are never stable, perfect, or protected, and he likes their flux. He sets the different angles that live inside the materiality of a photo against one another. Some pictures are framed. Others are hung as inkjet prints directly on the wall. A magazine page or a postcard can be granted equal presence. The hierarchy collapses and a different ethics appears.</p>
+
+    <p>He is precise with the smallest decisions because they hold meaning. He would never pin a photograph, because a pin pierces the corner. So he found a tape that grips without touching the emulsion, and he removes it later and the print is untouched. Magazine pages are different. He pins those with steel needles because tape will always tear them. There is a made-up logic at work that is also the spine of the project, a way to understand what these objects are and how they want to live on a wall. And then he reminds us that he also uses grids and linear installations and hangs works at the same height all around the room when that language is the right one. The myth that he only hangs sporadically is convenient and wrong. Disorder and order are both available, and he moves between them like a swimmer who understands current.</p>
+
+    <p>His photography is interesting because you take this perfect, controlled object which is, in reality, paper that creases when it is too dry, curls in humidity, becomes rigid and vulnerable when mounted, loses its flexibility. Tillmans does not pretend otherwise. This vulnerability becomes part of his beauty. The fact that photographs are not permanent is a reminder of our fragility. He reproduces every photograph from scratch for each exhibition. Sizes change, papers change, the same picture becomes another picture. A photograph is not a fossil. It is a decision, made again and again.</p>
+
+    <p>Both MoMA and the Pompidou returned to his familiar constellations. Airplanes, rats, the night sky stamped with stars. At the Pompidou, the arrangement of the tables gave me the space to think aloud. At the table devoted to the attacks on the United States, I caught myself asking whether certain collisions of politics and grief could ever be given this kind of breathing room at MoMA. I do not know the answer. I only know that at the Pompidou the materials asked me to think with them, not simply about them.</p>
+
+    <p>There were many small moments that thrilled me: the screens set up like an old corporate hallway; the sight of 69 Love Songs and the pull of "I Don't Want to Get Over You," a song that already belongs to me from another part of my life. In the video room, a girl's voice floated across while I watched a flower. Her echo laid itself over the image and made the moment more serene. The audience completed the work in front of me, and I felt grounded.</p>
+
+    <p>Tillmans has said that not every photograph is a comfortable one, and that photography can feel embarrassing because you reveal your interests. To overcome that embarrassment you need a sense of urgency, the feeling that you need this picture. That urgency was present in both cities, but it spread differently. In New York it sharpened intimacy. In Paris it spilled into politics and archives and the collisions of past and present. He has also said he wants to encourage empathy, to translate feelings and observations into pictures that allow you to connect. I felt that wish everywhere.</p>
+
+    <p>Sexuality is present because the world is present. He resists being labeled a "gay artist" making "gay art." He is a person who looks carefully. The body is not a special case. It is part of the same curiosity that turns toward leaves, animals, stars, iridescent films. Perhaps the urgency comes from a precise knowledge of fragility. He lives with HIV. It does not define the practice, but it calibrates its tenderness and its speed.</p>
+
+    <p>I keep returning to that thought from the beginning. The work is not a depiction of his life, though it travels through it. The life is the vehicle that delivers the rest of us to the images. We bring what we need and leave with something that is ours. In New York I felt close to him. In Paris I felt close to myself in relation to others. The difference lives in the gesture. MoMA offered a guided intimacy. The Pompidou offered the keys.</p>
+
+    <p>It would be easy to say that one was better, but that would miss the point. What felt original in Paris was not a claim about scale or spectacle. It was the way the exhibition behaved like a commons. The books on the shelves, the folders to take home, the French of his own words, the chance to make two small works and leave them or carry them. The installation read like a social contract written in paper and light. The smallest choices — tape versus needle — became a philosophy of care. The larger choice, to reproduce and resize and resequence and let a picture become another picture, became a philosophy of freedom.</p>
+
+    <p>Somewhere between the grids and the irregular clusters, between the room for swimming and the table for reading, between a song in my head and the echo of a child's voice, the exhibitions taught me how to look again. Not at him, but at the world that made both of us. If we do not study our surroundings we will not understand ourselves. Without our surroundings we would not be ourselves. Tillmans keeps mixing times and perspectives until the present cracks open and lets other years pass through. Some pictures resurface and earn a new meaning. That is how it should be. Nothing is fixed. Everything is in motion.</p>
+
+  </article>
+
+  <div class="essay-footer">
+    <a href="../index.html" class="back-link">← Back to all essays</a>
+  </div>
+
+  <footer>
+    <div class="inner">
+      <p class="footer-title">The Examined Eye</p>
+      <p class="footer-copy">All essays © Vasiliki Hadzikosta &nbsp;·&nbsp; Built for the love of looking</p>
+    </div>
+  </footer>
+
+</body>
+</html>
