@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — The Examined Eye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #F8F5EF;
+      color: #1a1a18;
+      line-height: 1.8;
+    }
+
+    a { color: inherit; }
+
+    .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      border-bottom: 1.5px solid #1a1a18;
+      padding: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    nav a { text-decoration: none; color: #555; }
+    nav a:hover { color: #1a1a18; }
+    nav a.active { color: #1a1a18; border-bottom: 1px solid #1a1a18; padding-bottom: 1px; }
+
+    .pub-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: #1a1a18;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* ── About layout ── */
+    .about-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── Portrait ── */
+    .portrait-col {
+      position: sticky;
+      top: 3rem;
+    }
+
+    .portrait {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #e0dbd2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      overflow: hidden;
+    }
+
+    /* Once you have a photo, replace the div with:
+       <img src="portrait.jpg" alt="Vasiliki Hadzikosta" style="width:100%;display:block;" />
+    */
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portrait-caption {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 0.6rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ── Text col ── */
+    .text-col h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: #1a1a18;
+      margin-bottom: 0.4rem;
+    }
+
+    .text-col .location {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 2rem;
+    }
+
+    .text-col p {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-col p:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Links ── */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-top: 0.5px solid #ccc;
+      padding-top: 2rem;
+    }
+
+    .contact-links a {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1a1a18;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .contact-links a:hover { opacity: 0.5; }
+
+    .link-label {
+      color: #aaa;
+      min-width: 80px;
+    }
+
+    .link-value {
+      border-bottom: 1px solid #1a1a18;
+      padding-bottom: 1px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1.5px solid #1a1a18;
+      padding: 1.5rem 0 2rem;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #1a1a18;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 620px) {
+      .about-wrap {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 3rem 2rem 4rem;
+      }
+      .portrait-col { position: static; max-width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="inner">
+      <nav>
+        <a href="index.html">Essays</a>
+        <a href="#">Archive</a>
+        <a href="about.html" class="active">About</a>
+      </nav>
+      <a href="index.html" class="pub-title">The Examined Eye</a>
+    </div>
+  </header>
+
+  <div class="about-wrap">
+
+    <div class="portrait-col">
+      <!-- Replace this div with an img tag once you have a photo -->
+      <div class="portrait">Photo</div>
+      <p class="portrait-caption">Paris &amp; Athens</p>
+    </div>
+
+    <div class="text-col">
+      <h1>Vasiliki Hadzikosta</h1>
+      <p class="location">Paris &nbsp;·&nbsp; Athens</p>
+
+      <p>I write art criticism. My essays move between exhibitions, institutions, and the questions that linger after leaving a room — about what an artwork asks of its viewer, and what the viewer brings in return.</p>
+
+      <p>The work lives here and on Instagram at <a href="https://instagram.com/behindartscenes" target="_blank" style="border-bottom: 1px solid #333; text-decoration: none;">@behindartscenes</a>, where I keep shorter notes from galleries, art fairs, and the spaces between.</p>
+
+      <p>All essays © 2025 Vasiliki Hadzikosta.</p>
+
+      <div class="contact-links">
+        <a href="mailto:your@email.com">
+          <span class="link-label">Email</span>
+          <span class="link-value">your@email.com</span>
+        </a>
+        <a href="https://instagram.com/behindartscenes" target="_blank">
+          <span class="link-label">Instagram</span>
+          <span class="link-value">@behindartscenes</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="inner">
+      <p class="footer-title">The Examined Eye</p>
+      <p class="footer-copy">All essays © Vasiliki Hadzikosta &nbsp;·&nbsp; Built for the love of looking</p>
+    </div>
+  </footer>
+
+</body>
+</html>
